@@ -4,14 +4,15 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+    //id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
-    //buildToolsVersion "29.0.3"
 
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 
     defaultConfig {
@@ -21,7 +22,11 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "WEATHER_API_KEY", "\"" + getWeatherKey() +"\"")
+        def Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+        //buildConfigField("String", "WEATHER_API_KEY", "\"" + getWeatherKey() +"\"")
+        buildConfigField("String", "WEATHER_API_KEY", properties.getProperty("weather_access_key"))
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,8 +69,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "androidx.navigation:navigation-testing:$navigationVersion"
+
 }
 
-def getWeatherKey(){
-    return project.findProject("weather_access_key")
-}
+

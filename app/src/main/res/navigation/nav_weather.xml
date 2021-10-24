@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_weather"
     app:startDestination="@id/home_dest">
+    <!--
     <fragment
         android:id="@+id/home_dest"
         android:name="test.com.weather.HomeViewPagerFrgment"
         android:label="Home"
         tools:layout="@layout/fragment_view_pager">
+    </fragment>
+    -->
+    <fragment
+        android:id="@+id/home_dest"
+        android:name="test.com.weather.CurrentWeatherFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_current_weather">
     </fragment>
 
 </navigation>

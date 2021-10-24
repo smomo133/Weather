@@ -24,15 +24,15 @@ data class CurrentWeather(
     //Wind direction in degrees
     @field:SerializedName("wind_degree") val windDegree:Int,
     //Wind direction as 16 point compass. e.g.: NSW
-    @field:SerializedName("wind_dir") val windDir:Int,
+    @field:SerializedName("wind_dir") val windDir:String,
     //Pressure in millibars
-    @field:SerializedName("pressure_mb") val pressureMb:Int,
+    @field:SerializedName("pressure_mb") val pressureMb:Float,
     //Pressure in inches
-    @field:SerializedName("pressure_in") val pressureIn:Int,
+    @field:SerializedName("pressure_in") val pressureIn:Float,
     //Precipitation amount in millimeters
-    @field:SerializedName("precip_mm") val precipMm:Int,
+    @field:SerializedName("precip_mm") val precipMm:Float,
     //Precipitation amount in inches
-    @field:SerializedName("precip_in") val precipIn:Int,
+    @field:SerializedName("precip_in") val precipIn:Float,
     //Humidity as percentage
     @field:SerializedName("humidity") val humidity:Int,
     //Cloud cover as percentage
@@ -42,7 +42,7 @@ data class CurrentWeather(
     //UV Index
     @field:SerializedName("uv") val uv:Float,
     //Wind gust in miles per hour
-    @field:SerializedName("gust_mph") val gustMph:Int,
+    @field:SerializedName("gust_mph") val gustMph:Float,
     //Wind gust in kilometer per hour
-    @field:SerializedName("gust_kph") val gustKph:Int
+    @field:SerializedName("gust_kph") val gustKph:Float
 )

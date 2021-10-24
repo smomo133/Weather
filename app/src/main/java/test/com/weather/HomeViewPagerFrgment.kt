@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import test.com.weather.databinding.FragmentViewPagerBinding
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class HomeViewPagerFrgment : Fragment() {
 
     override fun onCreateView(
@@ -17,6 +17,8 @@ class HomeViewPagerFrgment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentViewPagerBinding.inflate(inflater, container, false)
+        //val viewpager = binding.viewPager
+
         return binding.root
     }
 }

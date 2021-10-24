@@ -11,7 +11,7 @@ import test.com.weather.data.CurrentWeatherResponse
 
 interface WeatherService {
 
-    @GET("/current.json")
+    @GET("current.json?")
     suspend fun currentWeather(
         @Query("q") queryParam:String = "seoul", //auto:ip
         @Query("key") apikey:String = BuildConfig.WEATHER_API_KEY,
@@ -19,7 +19,7 @@ interface WeatherService {
     ): CurrentWeatherResponse
 
     companion object {
-        private const val BASE_URL = "http://api.weatherapi.com/v1"
+        private const val BASE_URL = "https://api.weatherapi.com/v1/"
 
         fun create() : WeatherService {
             val logger =
