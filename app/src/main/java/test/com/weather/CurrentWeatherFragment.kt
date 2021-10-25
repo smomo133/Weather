@@ -24,14 +24,21 @@ class CurrentWeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
-        getCurrentWeatherData()
+        getForecastData()
         return binding.root
     }
 
     private fun getCurrentWeatherData(){
-        viewModel.getCurrentWeather("seoul")
+        viewModel.getCurrentWeather("auto:ip")
         viewModel.currentWeaterResult.observe(viewLifecycleOwner, {
-            Log.d(TAG, "country  = " + it?.location?.country)
+
+        })
+    }
+
+    private fun getForecastData(){
+        viewModel.getForecast("auto:ip")
+        viewModel.forecastResult.observe(viewLifecycleOwner, {
+
         })
     }
 

@@ -2,19 +2,13 @@ package test.com.weather.data
 
 import com.google.gson.annotations.SerializedName
 
-data class CurrentWeather(
-    //Local time when the real time data was updated.
-    @field:SerializedName("last_updated") val lastUpdated:String,
-    //Local time when the real time data was updated in unix time.
-    @field:SerializedName("last_updated_epoch") val lastUpdatedEpoch:Int,
+data class WeatherHourData(
+    @field:SerializedName("time_epoch") val timeEpoch:Int,
+    @field:SerializedName("time") val time:String,
     //Temperature in celsius
     @field:SerializedName("temp_c") val tempC:Float,
     //Temperature in fahrenheit
     @field:SerializedName("temp_f") val tempF:Float,
-    //Feels like temperature in celsius
-    @field:SerializedName("feelslike_c") val feelslikeC:Float,
-    //Feels like temperature in fahrenheit
-    @field:SerializedName("feelslike_f") val feelslikeF:Float,
     //Weather condition
     @field:SerializedName("condition") val condition:Condition,
     //Wind speed in miles per hour
@@ -37,14 +31,26 @@ data class CurrentWeather(
     @field:SerializedName("humidity") val humidity:Int,
     //Cloud cover as percentage
     @field:SerializedName("cloud") val cloud:Int,
-    //1 = Yes 0 = No Whether to show day condition icon or night icon
-    @field:SerializedName("is_day") val isDay:Int,
-    //UV Index
-    @field:SerializedName("uv") val uv:Float,
-    //Wind gust in miles per hour
-    @field:SerializedName("gust_mph") val gustMph:Float,
+    //Feels like temperature in celsius
+    @field:SerializedName("feelslike_c") val feelslikeC:Float,
+    //Feels like temperature in fahrenheit
+    @field:SerializedName("feelslike_f") val feelslikeF:Float,
+    //Windchill temperature in celcius
+    @field:SerializedName("windchill_c") val windchillC:Float,
+    //Heat index in celcius
+    @field:SerializedName("heatindex_c") val heatindexC:Float,
+    //Dew point in celcius
+    @field:SerializedName("dewpoint_c") val dewpointC:Float,
+    //1 = Yes 0 = No / Will it will rain or not
+    @field:SerializedName("will_it_rain") val willItRain:Int,
+    //1 = Yes 0 = No / Will it will snow or not
+    @field:SerializedName("will_it_snow") val willItSnow:Int,
+    //Visibility in kilometer
+    @field:SerializedName("vis_km") val visKm:Float,
+    //Chance of rain as percentage
+    @field:SerializedName("chance_of_rain") val chanceOfRain:Int,
+    //Chance of snow as percentage
+    @field:SerializedName("chance_of_snow") val chanceOfSnow:Int,
     //Wind gust in kilometer per hour
     @field:SerializedName("gust_kph") val gustKph:Float,
-    //
-    @field:SerializedName("air_quality") val airQuality:AirQuality
 )
