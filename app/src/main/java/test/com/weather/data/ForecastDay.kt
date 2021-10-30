@@ -7,5 +7,5 @@ data class ForecastDay(
     @field:SerializedName("date_epoch") val dateEpoch:Int,
     @field:SerializedName("day") val dayData:WeatherDayData,
     @field:SerializedName("astro") val astro:Astro,
-    @field:SerializedName("hour") val hourData:List<WeatherHourData>,
+    @field:SerializedName("hour") val hourlyData:List<HourlyWeatherData>,
 )

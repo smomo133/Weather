@@ -11,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import test.com.weather.adapter.HourlyWeatherAdapter
+import test.com.weather.data.HourlyWeatherData
 import test.com.weather.databinding.FragmentCurrentWeatherBinding
 import test.com.weather.viewmodels.CurrentWeatherViewModel
 
@@ -24,7 +26,9 @@ class CurrentWeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
-        getForecastData()
+        val adapter = HourlyWeatherAdapter()
+        binding.hourlyWeatherList.adapter = adapter
+        getForecastData(adapter)
         return binding.root
     }
 
@@ -35,10 +39,14 @@ class CurrentWeatherFragment : Fragment() {
         })
     }
 
-    private fun getForecastData(){
+    private fun getForecastData(adapter: HourlyWeatherAdapter){
         viewModel.getForecast("auto:ip")
         viewModel.forecastResult.observe(viewLifecycleOwner, {
-
+            val hourDataList = mutableListOf<HourlyWeatherData>()
+            for(forecast in it.forecast.forecastday){
+                hourDataList.addAll(forecast.hourlyData)
+            }
+            adapter.submitList(hourDataList)
         })
     }
 
