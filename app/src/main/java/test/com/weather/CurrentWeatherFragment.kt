@@ -2,15 +2,13 @@ package test.com.weather
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import test.com.weather.adapter.HourlyWeatherAdapter
 import test.com.weather.data.HourlyWeatherData
 import test.com.weather.databinding.FragmentCurrentWeatherBinding
@@ -29,7 +27,30 @@ class CurrentWeatherFragment : Fragment() {
         val adapter = HourlyWeatherAdapter()
         binding.hourlyWeatherList.adapter = adapter
         getForecastData(adapter)
+
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolBar)
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_current_weather, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.weather_setting -> {
+                navigateToSetting()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun navigateToSetting(){
+        val direction
+            = CurrentWeatherFragmentDirections.actionCurrentWeatherFragmentToSettingFragment()
+        findNavController().navigate(direction)
     }
 
     private fun getCurrentWeatherData(){

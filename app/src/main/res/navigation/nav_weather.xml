@@ -4,19 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_weather"
     app:startDestination="@id/home_dest">
-    <!--
-    <fragment
-        android:id="@+id/home_dest"
-        android:name="test.com.weather.HomeViewPagerFrgment"
-        android:label="Home"
-        tools:layout="@layout/fragment_view_pager">
-    </fragment>
-    -->
+
     <fragment
         android:id="@+id/home_dest"
         android:name="test.com.weather.CurrentWeatherFragment"
-        android:label="Home"
+        android:label="Realtime Weather"
         tools:layout="@layout/fragment_current_weather">
+        <action
+            android:id="@+id/action_current_weather_fragment_to_setting_fragment"
+            app:destination="@id/weather_setting_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/weather_setting_fragment"
+        android:name="test.com.weather.WeatherSettingFragment"
+        android:label="Weather Setting"
+        tools:layout="@layout/fragment_weather_setting">
+        <action
+            android:id="@+id/action_setting_fragment_to_current_weather_fragment"
+            app:destination="@id/home_dest"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
 
 </navigation>
