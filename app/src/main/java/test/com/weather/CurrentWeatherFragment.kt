@@ -17,13 +17,13 @@ import test.com.weather.viewmodels.CurrentWeatherViewModel
 @AndroidEntryPoint
 class CurrentWeatherFragment : Fragment() {
     private val viewModel:CurrentWeatherViewModel by viewModels()
-
+    private lateinit var binding:FragmentCurrentWeatherBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
+        binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
         val adapter = HourlyWeatherAdapter()
         binding.hourlyWeatherList.adapter = adapter
         getForecastData(adapter)
@@ -67,6 +67,8 @@ class CurrentWeatherFragment : Fragment() {
             for(forecast in it.forecast.forecastday){
                 hourDataList.addAll(forecast.hourlyData)
             }
+            binding.location = it.location
+            binding.current = it.current
             adapter.submitList(hourDataList)
         })
     }
